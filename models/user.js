@@ -33,4 +33,5 @@ var userSchema = new Schema({
     },
     resetCode: "",
 }, { timestamps: true });
-exports.default = mongoose_1.default.model("User", userSchema);
+var User = mongoose_1.default.model("User", userSchema);
+module.exports = User;
