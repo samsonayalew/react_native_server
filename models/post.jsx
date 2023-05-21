@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_2 = require("mongoose");
+const mongoose_1 = require("mongoose");
 const user_1 = __importDefault(require("./user"));
-const postSchema = new mongoose_2.Schema({
+const postSchema = new mongoose_1.Schema({
     title: {
         type: String,
         required: true,
@@ -20,13 +20,13 @@ const postSchema = new mongoose_2.Schema({
         required: true,
     },
     postedBy: {
-        type: mongoose_2.Schema.Types.ObjectId,
+        type: mongoose_1.Schema.Types.ObjectId,
         ref: user_1.default
     },
     view: {
         type: Number,
         default: 0,
     },
-    likes: [{ type: mongoose_2.Schema.Types.ObjectId, ref: user_1.default }]
+    likes: [{ type: mongoose_1.Schema.Types.ObjectId, ref: user_1.default }]
 }, { timestamps: true });
-exports.default = (0, mongoose_2.model)('Post', postSchema);
+exports.default = (0, mongoose_1.model)('Post', postSchema);

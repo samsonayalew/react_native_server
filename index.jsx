@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // import cors from "cors";
-const mongoose_2 = require("mongoose");
+const mongoose_1 = require("mongoose");
 const express_1 = require("express");
 const { DATABASE } = require("./config");
 const authRoutes = require("./routes/auth");
@@ -9,7 +9,7 @@ const PostRoutes = require("./routes/post");
 const morgan = require("morgan");
 // const applicationlication = express();
 // db connection+
-(0, mongoose_2.connect)(DATABASE)
+(0, mongoose_1.connect)(DATABASE)
     .then(() => console.log("DB connected"))
     .catch((err) => console.log("DB CONNECTION ERROR: ", err));
 // middlewares

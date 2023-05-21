@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_2 = __importDefault(require("mongoose"));
-const { Schema } = mongoose_2.default;
+const mongoose_1 = __importDefault(require("mongoose"));
+const { Schema } = mongoose_1.default;
 const userSchema = new Schema({
     name: {
         type: String,
@@ -33,4 +33,4 @@ const userSchema = new Schema({
     },
     resetCode: "",
 }, { timestamps: true });
-exports.default = mongoose_2.default.model("User", userSchema);
+exports.default = mongoose_1.default.model("User", userSchema);
