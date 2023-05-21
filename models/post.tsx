@@ -1,6 +1,6 @@
 
 import { Schema, model, } from "mongoose";
-import User from "./user";
+const User = require("./user");
 
 const postSchema = new Schema(
     {
@@ -18,8 +18,7 @@ const postSchema = new Schema(
             required: true,
         },
         postedBy:{
-            type: Schema.Types.ObjectId,
-            ref: User
+            type: Schema.Types.ObjectId
         },
         view:{
             type: Number,

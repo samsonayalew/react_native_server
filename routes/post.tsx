@@ -1,16 +1,14 @@
 
-import * as express from "express";
-const router = express.Router();
+import {Router} from "express";
+const router = Router();
 
 // controllers
-import {
+const {
  createPost, readPost, updatePost, removePost
-} from  "../controllers/post";
+} = require("../controllers/post");
 
 
 router.post("/createPost", createPost);
 router.get("/readPost", readPost);
 router.put("/updatePost", updatePost);
 router.delete("/removePost", removePost);
-
-export default router;

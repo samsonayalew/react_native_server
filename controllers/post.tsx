@@ -1,6 +1,6 @@
-import Post from "../models/post";
+const Post = require("../models/post");
 
-export const createPost = async (req: any, res: any) => {
+export const createPost = async (req, res) => {
   try {
     const { title, link, urlPreview } = req.body;
     // find user based on email and resetCode
@@ -23,14 +23,14 @@ export const createPost = async (req: any, res: any) => {
   }
 };
 
-export const readPost = async (req: any, res: any) => {
+export const readPost = async (req, res) => {
   //
 };
 
-export const updatePost = async (req: any, res: any) => {
+export const updatePost = async (req, res) => {
   //
 };
 
-export const removePost = async (req: any, res: any) => {
+export const removePost = async (req, res) => {
   //
 };

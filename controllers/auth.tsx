@@ -1,5 +1,5 @@
 
-import User from "../models/user";
+const User = require("../models/user");
 import jwt from "jsonwebtoken";
 import {nanoid} from "nanoid";
 import {expressjwt} from 'express-jwt';
@@ -19,7 +19,7 @@ require("dotenv").config();
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_KEY);
 
-export const signup = async (req:any, res:any) => {
+export const signup = async (req, res) => {
   console.log("HIT SIGNUP");
   try {
     // validation
@@ -74,7 +74,7 @@ export const signup = async (req:any, res:any) => {
   }
 };
 
-export const signin = async (req:any, res:any) => {
+export const signin = async (req, res) => {
   // console.log(req.body);
   try {
     const { email, password } = req.body;
@@ -107,7 +107,7 @@ export const signin = async (req:any, res:any) => {
   }
 };
 
-export const forgotPassword = async (req:any, res:any) => {
+export const forgotPassword = async (req, res) => {
   const { email } = req.body;
   // find user by email
   const user = await User.findOne({ email });
@@ -145,7 +145,7 @@ export const forgotPassword = async (req:any, res:any) => {
   }
 };
 
-export const resetPassword = async (req:any, res:any) => {
+export const resetPassword = async (req, res) => {
   try {
     const { email, password, resetCode } = req.body;
     // find user based on email and resetCode
@@ -177,7 +177,7 @@ export const requireSignin = expressjwt({
 });
 
 
-export const uploadImage = async (req:any, res:any) => {
+export const uploadImage = async (req, res) => {
   try {
     // console.log('upload image > user id', JSON.stringify(req.user._id));
     const result = await cloudinary.uploader.upload(req.body.image, {
@@ -201,7 +201,7 @@ export const uploadImage = async (req:any, res:any) => {
   }
 };
 
-export const updatePassword = async (req:any, res:any) => {
+export const updatePassword = async (req, res) => {
   try {
     const { password } = req.body;
     if (password && password.length < 6) {

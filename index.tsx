@@ -1,15 +1,30 @@
 // import cors from "cors";
 import {connect} from "mongoose";
-import {json, urlencoded, application} from "express";
+import express, {json, urlencoded, Application, Router} from "express";
+
+const {
+  createPost, readPost, updatePost, removePost
+ } = require("./controllers/post");
+ 
+// controllers
+const {
+  signup,
+  signin,
+  forgotPassword,
+  resetPassword,
+  uploadImage,
+  requireSignin,
+  updatePassword,
+} = require("./controllers/auth");
 
 const { DATABASE } = require("./config");
 
-const authRoutes = require("./routes/auth");
-const PostRoutes = require("./routes/post");
-
 const morgan = require("morgan");
 
-// const applicationlication = express();
+const app: Application = express();
+const router = Router();
+
+// const application = express();
 
 // db connection+
   connect(DATABASE)
@@ -17,13 +32,29 @@ const morgan = require("morgan");
   .catch((err: any) => console.log("DB CONNECTION ERROR: ", err));
 
 // middlewares
-application.use(json({ limit: "4mb" }));
-application.use(urlencoded({ extended: true }));
-// applicationlication.use(cors());
-application.use(morgan("dev"));
+app.use(json({ limit: "4mb" }));
+app.use(urlencoded({ extended: true }));
+// application.use(cors());
+app.use(morgan("dev"));
 
 // route middlewares
-application.use("/api", authRoutes);
-application.use("/api", PostRoutes);
 
-application.listen(8000, () => console.log("Server running on port 8000"));
+router.get("/", (req, res) => {
+  return res.json({
+    data: "hello world from kaloraat auth API",
+  });
+});
+router.post("/signup", signup);
+router.post("/signin", signin);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
+router.post("/upload-image", requireSignin, uploadImage);
+router.post('/update-password', requireSignin, updatePassword);
+
+
+router.post("/createPost", createPost);
+router.get("/readPost", readPost);
+router.put("/updatePost", updatePost);
+router.delete("/removePost", removePost);
+
+app.listen(8000, () => console.log("Server running on port 8000"));
