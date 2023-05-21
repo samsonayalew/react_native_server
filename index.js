@@ -55,4 +55,5 @@ router.post("/createPost", createPost);
 router.get("/readPost", readPost);
 router.put("/updatePost", updatePost);
 router.delete("/removePost", removePost);
+app.use('/api', router);
 app.listen(8000, function () { return console.log("Server running on port 8000"); });
